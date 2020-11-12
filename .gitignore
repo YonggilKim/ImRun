@@ -56,6 +56,10 @@ sysinfo.txt
 
 
 # End of https://www.gitignore.io/api/unity
+Library\
+Library/
+Logs/
+obj/
 Library/AnnotationManager
 Library/APIUpdater/project-dependencies.graph
 Library/ArtifactDB
@@ -5197,9 +5201,7 @@ Library/StateCache/LayerSettings/LayerSettings.json
 Library/StateCache/SceneView/01869b-mainStage.json
 Library/StateCache/SceneView/d69a67-mainStage.json
 Library/Style.catalog
-Logs/Packages-Update.log
 obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
-Packages/manifest.json
-Packages/packages-lock.json
 Temp/UnityLockfile
 Temp/__Backupscenes/0.backup
+Library/EditorInstance.json
