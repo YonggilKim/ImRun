@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Dead
+  - JumpTrigger
   layers:
   - Default
   - TransparentFX
