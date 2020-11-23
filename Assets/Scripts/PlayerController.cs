@@ -11,12 +11,21 @@ public class PlayerController : MonoBehaviour
     public Transform playerTransform;
 
     private int jumpCount = 0; // 누적 점프 횟수
-    private bool isGrounded = false; // 바닥에 닿았는지 나타냄
+    private bool _isGrounded = false;
+    private bool isGrounded {
+        set {
+            _isGrounded = value;
+        }
+        get {
+            return _isGrounded;
+        }
+    }
     private bool isDead = false; // 사망 상태
 
     private Rigidbody2D playerRigidbody; // 사용할 리지드바디 컴포넌트
     private Animator animator; // 사용할 애니메이터 컴포넌트
     private AudioSource playerAudio; // 사용할 오디오 소스 컴포넌트
+    private bool isFirstEnterCollider = true;
     void Awake()
     {
         // 싱글톤 변수 instance가 비어있는가?
@@ -60,7 +69,14 @@ public class PlayerController : MonoBehaviour
 
         //    playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
         //}
-        animator.SetBool("isGrounded", isGrounded);
+        //animator.SetBool("isGrounded", isGrounded);
+    }
+    public void ChangeWalkingState(bool value = false)
+    {
+        //Debug.Log("@>> Walking... + " + value);
+        animator.SetBool("Walk", value);
+        animator.SetBool("isGrounded", value);
+
     }
     public void RotateChar(int dgree)
     {
@@ -107,17 +123,24 @@ public class PlayerController : MonoBehaviour
         ///첫번째 충돌지점의 표면의 방향이 위쪽이며 경사가 너무 급하지 않은지 검사하는거임
         ///이 조건을 검사합으로써 '절벽'이나 '천장'을 바닥으로 인식하는 문제를 해결
 
-        if (collision.contacts[0].normal.y > 0.7f)
+        if (isFirstEnterCollider != true)
         {
             isGrounded = true;
+            Debug.Log("@>> isGrounded... + " + isGrounded);
             jumpCount = 0;
+            animator.SetBool("isGrounded", isGrounded);
+            return;
         }
+        isFirstEnterCollider = false;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         // 바닥에서 벗어났음을 감지하는 처리
         isGrounded = false;
+        Debug.Log("@>> isGrounded... + " + isGrounded);
+        animator.SetBool("isGrounded", isGrounded);
+
 
     }
 }

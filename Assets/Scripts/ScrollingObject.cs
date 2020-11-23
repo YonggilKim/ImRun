@@ -26,18 +26,25 @@ public class ScrollingObject : MonoBehaviour
     {
         PlayerController.instance.isLeftty = false;
         rightPress = true;
+        PlayerController.instance.ChangeWalkingState(true);
+
     }
     public void OnRigtMouseUP()
     {
         rightPress = false;
+        PlayerController.instance.ChangeWalkingState(false);
+
     }
     public void OnLeftPress()
     {
         PlayerController.instance.isLeftty = true;
+        PlayerController.instance.ChangeWalkingState(true);
         leftPress = true;
     }
     public void OnLeftMouseUP()
     {
         leftPress = false;
+        PlayerController.instance.ChangeWalkingState(false);
+
     }
 }
