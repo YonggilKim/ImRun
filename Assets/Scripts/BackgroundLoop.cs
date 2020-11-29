@@ -8,11 +8,12 @@ public class BackgroundLoop : MonoBehaviour {
         // 가로 길이를 측정하는 처리
         //BoxCollider2D backgroundCollider = GetComponent<BoxCollider2D>();
         //width = backgroundCollider.size.x;
-        width = 20.48f;
+        width = 40.96f;
     }
 
     private void Update() {
         // 현재 위치가 원점에서 왼쪽으로 width 이상 이동했을때 위치를 리셋
+        Debug.Log("pos : " + transform.position.x);
         if (transform.position.x <= -width)
             Reposition();
         if (transform.position.x >= width)
